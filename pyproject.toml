@@ -1,0 +1,23 @@
+[project]
+name = "circular_protocol_api"
+version = "1.0.88"
+authors = [
+  { name="Danny De Novi", email="dannydenovi29@gmail.com" },
+]
+description = "Circular Blockchain API written in Python 3"
+readme = "README.md"
+requires-python = ">=3.8"
+classifiers = [
+    "Programming Language :: Python :: 3",
+    "License :: OSI Approved :: MIT License",
+    "Operating System :: OS Independent",
+]
+
+dependencies = [
+    "requests >=2.32.3",
+    "ecdsa >=0.19.0"
+]
+
+[project.urls]
+Homepage = "https://github.com/dannydenovi/circular-python-api"
+Issues = "https://github.com/dannydenovi/circular-python-api/issues"
