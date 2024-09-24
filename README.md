@@ -43,6 +43,6 @@ MIT License (MIT)
 ## Contact
 
 - Author: Danny De Novi
-- Email: dannydenovi29@gmail.com
+- Email: dannydenovi29@gmail.com / info@circularlabs.io
 
 ---
