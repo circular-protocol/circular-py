@@ -13,7 +13,7 @@ setup(
     description='Official Circular API for Python',
     long_description=open('README.md').read(),
     long_description_content_type='text/markdown',
-    url='https://github.com/dannydenovi/circular-python-sdk',
+    url='https://github.com/circular-protocol/circular-py',
     classifiers=[
         'Programming Language :: Python :: 3',
         'License :: OSI Approved :: MIT License',
