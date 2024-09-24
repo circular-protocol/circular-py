@@ -19,5 +19,5 @@ dependencies = [
 ]
 
 [project.urls]
-Homepage = "https://github.com/dannydenovi/circular-python-api"
-Issues = "https://github.com/dannydenovi/circular-python-api/issues"
+Homepage = "https://github.com/circular-protocol/circular-py"
+Issues = "https://github.com/circular-protocol/circular-py/issues"
