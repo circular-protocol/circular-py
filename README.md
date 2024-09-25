@@ -18,7 +18,7 @@ pip install .
 
 ## Usage
 
-Explain how to use the package and provide some basic examples to get users started.
+Import the package and instantiate the Circular Protocol API class.
 
 ```python
 from circular_protocol_api import CircularProtocolAPI
