@@ -1,6 +1,6 @@
-# Circular Python API
+# Circular Protocol Python API
 
-The Circular Blockchain API suite provides a robust and efficient interface for interacting with the Circular Protocol, a decentralized and highly scalable blockchain network. These APIs enable developers to integrate, query, and execute operations on the Circular Protocol blockchain, supporting a wide range of decentralized applications (dApps), financial transactions, and smart contracts.
+The Circular Protocol API suite provides a robust and efficient interface for interacting with the Circular Protocol, a decentralized and highly scalable blockchain network. These APIs enable developers to integrate, query, and execute operations on the Circular Protocol blockchain, supporting a wide range of decentralized applications (dApps), financial transactions, and smart contracts.
 
 ## Installation
 
