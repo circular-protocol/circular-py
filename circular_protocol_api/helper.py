@@ -7,6 +7,8 @@ import hashlib
 import json
 import requests
 from ecdsa import SigningKey, VerifyingKey, SECP256k1
+from ecdsa.util import sigencode_der
+from ecdsa.rfc6979 import generate_k
 import circular_protocol_api.circular_exception as ce
 
 
@@ -40,13 +42,21 @@ def getFormattedTimestamp() -> str:
     seconds = padNumber(now.second)
     return f'{year}:{month}:{day}-{hours}:{minutes}:{seconds}'
 
-## Sign Message
 def signMessage(message, private_key):
     key = SigningKey.from_string(bytes.fromhex(private_key), curve=SECP256k1)
     msgHash = hashlib.sha256(message.encode()).digest()
-    signature = key.sign(msgHash)
-    return signature
-
+    
+    # Generate a deterministic k value (RFC 6979)
+    k = generate_k(
+        key.curve.order,                      # Order of the curve
+        key.privkey.secret_multiplier,        # Private key multiplier 
+        hash_func=hashlib.sha256,             # Hash function
+        data=msgHash                          # Data to hash
+    )
+    # Sign the message using the private key and the deterministic k value
+    signature = key.sign_digest(msgHash, sigencode=sigencode_der, k=k)
+    print("signature", signature.hex())
+    return signature.hex()
 
 ## Verify Message Signature
 def verifySignature(publicKey, message, signature):
@@ -78,9 +88,6 @@ def hexFix(word) -> str:
 
 def sha256(data):
     return hashlib.sha256(data.encode()).hexdigest()
-
-
-
 
 
 ######## NODES SETTINGS ########    
