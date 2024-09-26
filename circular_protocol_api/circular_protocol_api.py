@@ -614,6 +614,7 @@ class CircularProtocolAPI:
 
         Args:
             sender: Wallet address
+            sender_pk: Wallet private key
             to: Destination wallet address
             payload: Transaction payload
             blockchain: Blockchain name
@@ -671,6 +672,8 @@ class CircularProtocolAPI:
         sender = helper.hexFix(sender)
         to = helper.hexFix(to)
         ID = str(blockchain + sender + to + payload + str(nonce) + timestamp)
+
+
 
         data = {
             'ID': helper.sha256(ID),
