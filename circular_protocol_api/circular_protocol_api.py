@@ -607,7 +607,7 @@ class CircularProtocolAPI:
 
         return helper.sendRequest(data, nag._SEND_TRANSACTION, self.__NAG_URL__)
     
-    def sendTransaction(self, sender, sender_pk, to, payload, blockchain, type='C_TYPE_COIN'):
+    def sendTransactionWithPK(self, sender, sender_pk, to, payload, blockchain, type='C_TYPE_COIN'):
 
         """
         Sends a transaction to a desired blockchain
