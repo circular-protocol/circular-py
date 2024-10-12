@@ -55,7 +55,6 @@ def signMessage(message, private_key):
     )
     # Sign the message using the private key and the deterministic k value
     signature = key.sign_digest(msgHash, sigencode=sigencode_der, k=k)
-    print("signature", signature.hex())
     return signature.hex()
 
 ## Verify Message Signature
