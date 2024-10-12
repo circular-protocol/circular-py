@@ -1,5 +1,5 @@
 # Author: Danny De Novi
-# Last Modified: 2024-09-22
+# Last Modified: 2024-10-12
 # Purpose: Circular Python SDK
 
 import json
@@ -11,7 +11,7 @@ class CircularProtocolAPI:
 
 
     # Private attributes
-    __version__ = '1.0.88'
+    __version__ = '1.0.8'
     __NAG_URL__ = 'https://nag.circularlabs.io/NAG.php?cep='
     __NAG_KEY__ = ''
     __lastError__ = ''
@@ -606,89 +606,7 @@ class CircularProtocolAPI:
         } 
 
         return helper.sendRequest(data, nag._SEND_TRANSACTION, self.__NAG_URL__)
-    
-    def sendTransactionWithPK(self, sender, sender_pk, to, payload, blockchain, type='C_TYPE_COIN'):
-
-        """
-        Sends a transaction to a desired blockchain
-
-        Args:
-            sender: Wallet address
-            sender_pk: Wallet private key
-            to: Destination wallet address
-            payload: Transaction payload
-            blockchain: Blockchain name
-
-        Returns:
-            Transaction ID
-        """
-
-        timestamp = helper.getFormattedTimestamp()
-        blockchain = helper.hexFix(blockchain)
-        nonce = int(self.getWalletNonce(blockchain, sender)["Response"]["Nonce"]) + 1
-        payload = helper.hexFix(json.dumps(payload).encode().hex())
-        sender = helper.hexFix(sender)
-        sender_pk = helper.hexFix(sender_pk)
-        to = helper.hexFix(to)
-        ID = str(blockchain + sender + to + payload + str(nonce) + timestamp)
-        hashID = helper.sha256(ID)
-        signature = helper.signMessage(hashID, sender_pk)
-
-        data = {
-            'ID': hashID,
-            'From': sender,
-            'To': to,
-            'Timestamp': timestamp,
-            'Type': type,
-            'Payload': payload,
-            'Nonce': f"{nonce}",
-            'Signature': signature,
-            'Blockchain': blockchain,
-            'Version': self.__version__
-        }
-
-        return helper.sendRequest(data, nag._SEND_TRANSACTION, self.__NAG_URL__)
-
-    def sendTransactionWithSignature(self, sender, to, payload, signature, blockchain, type='C_TYPE_COIN'):
-
-        """
-        Sends a transaction to a desired blockchain
         
-        Args:
-            sender: Wallet address
-            to: Destination wallet address
-            payload: Transaction payload
-            signature: Transaction signature
-            blockchain: Blockchain name
-            
-        Returns:
-            Transaction ID
-        """
-
-        timestamp = helper.getFormattedTimestamp()
-        blockchain = helper.hexFix(blockchain)
-        nonce = int(self.getWalletNonce(blockchain, sender)["Response"]["Nonce"]) + 1
-        payload = helper.hexFix(json.dumps(payload).encode().hex())
-        sender = helper.hexFix(sender)
-        to = helper.hexFix(to)
-        ID = str(blockchain + sender + to + payload + str(nonce) + timestamp)
-
-
-
-        data = {
-            'ID': helper.sha256(ID),
-            'From': sender,
-            'To': to,
-            'Timestamp': timestamp,
-            'Type': type,
-            'Payload': payload,
-            'Nonce': f"{nonce}",
-            'Signature': helper.hexFix(signature),
-            'Blockchain': blockchain,
-            'Version': self.__version__
-        }
-
-        return helper.sendRequest(data, nag._SEND_TRANSACTION, self.__NAG_URL__)
     
     def getTransactionOutcome(self, Blockchain, TxID, timeoutSec, intervalSec=10):
 
