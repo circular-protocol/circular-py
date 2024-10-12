@@ -1,6 +1,6 @@
 [project]
 name = "circular_protocol_api"
-version = "1.0.5"
+version = "1.0.6"
 authors = [
   { name="Danny De Novi", email="dannydenovi29@gmail.com" },
 ]
