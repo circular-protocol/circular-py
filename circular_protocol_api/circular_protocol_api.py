@@ -34,6 +34,9 @@ class CircularProtocolAPI:
 
     def getError(self):
         return self.__lastError__
+    
+    def getVersion(self):
+        return self.__version__
 
     ################################ SMART CONTRACT ########################################
 
