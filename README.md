@@ -42,7 +42,7 @@ The result is a Python dictionary so you could access values via the `.get()` me
 
 ## License
 
-MIT License (MIT)
+This library is open-source and available for both private and commercial use. For detailed terms, please refer to the LICENSE file provided in the repository.
 
 ## Contact
 
