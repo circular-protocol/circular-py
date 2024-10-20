@@ -609,44 +609,6 @@ class CircularProtocolAPI:
         } 
 
         return helper.sendRequest(data, nag._SEND_TRANSACTION, self.__NAG_URL__)
-    
-
-    def sendTransactionWithPK(self, sender, sender_pk, to, payload, blockchain, type='C_TYPE_COIN'):
-        """
-        Sends a transaction to a desired blockchain
-        Args:
-            sender: Wallet address
-            sender_pk: Wallet private key
-            to: Destination wallet address
-            payload: Transaction payload
-            blockchain: Blockchain name
-        Returns:
-            Transaction ID
-        """
-        timestamp = helper.getFormattedTimestamp()
-        blockchain = helper.hexFix(blockchain)
-        nonce = int(self.getWalletNonce(blockchain, sender)["Response"]["Nonce"]) + 1
-        payload = helper.hexFix(json.dumps(payload).encode().hex())
-        sender = helper.hexFix(sender)
-        sender_pk = helper.hexFix(sender_pk)
-        to = helper.hexFix(to)
-        ID = str(blockchain + sender + to + payload + str(nonce) + timestamp)
-        hashID = helper.sha256(ID)
-        signature = helper.signMessage(hashID, sender_pk)
-        data = {
-            'ID': hashID,
-            'From': sender,
-            'To': to,
-            'Timestamp': timestamp,
-            'Type': type,
-            'Payload': payload,
-            'Nonce': f"{nonce}",
-            'Signature': signature,
-            'Blockchain': blockchain,
-            'Version': self.__version__
-        }
-        return helper.sendRequest(data, nag._SEND_TRANSACTION, self.__NAG_URL__)
-        
 
 
     def getTransactionOutcome(self, Blockchain, TxID, timeoutSec, intervalSec=10):
