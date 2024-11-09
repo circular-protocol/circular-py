@@ -2,7 +2,7 @@
 # Last Modified: 2024-09-22
 # Purpose: Circular Python SDK
 
-from datetime import datetime
+from datetime import datetime, timezone
 import hashlib
 import json
 import requests
@@ -33,7 +33,7 @@ def padNumber(num) -> str:
 
 ## Generate Timestamp formatted
 def getFormattedTimestamp() -> str:
-    now = datetime.now()
+    now = datetime.now(timezone.utc)  # Use timezone-aware UTC datetime
     year = now.year
     month = padNumber(now.month)
     day = padNumber(now.day)
