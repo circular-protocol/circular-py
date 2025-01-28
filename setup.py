@@ -2,7 +2,7 @@ from setuptools import setup, find_packages
 
 setup(
     name='circular_protocol_api',
-    version='1.0.9',
+    version='1.0.10',
     packages=find_packages(),
     install_requires=[
         'requests',
