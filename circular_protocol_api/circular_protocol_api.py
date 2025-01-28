@@ -331,7 +331,7 @@ class CircularProtocolAPI:
 
         data = {
             'Blockchain': helper.hexFix(blockchain),
-            'Code': code, 
+            'Code': helper.hexFix(code), 
             'Version': self.__version__
         }
 
