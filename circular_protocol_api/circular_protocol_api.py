@@ -634,9 +634,9 @@ class CircularProtocolAPI:
                 raise TimeoutError('Timeout exceeded')
 
             data = self.getTransactionByID(Blockchain, TxID, 0, 10)
-            print('Data received:', data)
+            #print('Data received:', data)
             if data['Result'] == 200 and data['Response'] != 'Transaction Not Found' and data['Response']['Status'] != 'Pending':
-                return data['Response']
+                return data
             else:
                 print('Transaction not yet confirmed or not found, polling again...')
                 time.sleep(intervalSec)
